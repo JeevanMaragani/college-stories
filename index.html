@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Confessions</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #ff4d4d;
+            color: white;
+        }
+        header h1 {
+            margin: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        .confession-form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .confession-form input, .confession-form textarea, .confession-form select, .confession-form button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .confession-form button {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .confession-form button:hover {
+            background-color: #e60000;
+        }
+        .confession-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .confession-card h3 {
+            margin: 0 0 10px;
+        }
+        .reactions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .reaction-btn {
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: #ffcccc;
+            display: inline-block;
+        }
+        .reaction-btn:hover {
+            background-color: #ff9999;
+        }
+        .reaction-count {
+            margin-left: 5px;
+        }
+        @media (min-width: 768px) {
+            .confession-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Love Confessions</h1>
+        <p>Share your love confessions, attractions, or admiring qualities anonymously or openly.</p>
+    </header>
+
+    <div class="container">
+        <div class="confession-form">
+            <h2>Submit a Confession</h2>
+            <input type="text" id="confessionTitle" placeholder="Confession Title">
+            <select id="confessionCategory">
+                <option value="love">Love Confession</option>
+                <option value="attraction">Attraction</option>
+                <option value="admiration">Admiring Qualities</option>
+            </select>
+            <textarea id="confessionText" rows="4" placeholder="Write your confession..."></textarea>
+            <label>
+                <input type="checkbox" id="anonymous"> Post Anonymously
+            </label>
+            <button id="submitConfession">Submit Confession</button>
+        </div>
+
+        <div class="search-filter">
+            <input type="text" id="searchBar" placeholder="Search confessions...">
+            <select id="categoryFilter">
+                <option value="">All Categories</option>
+                <option value="love">Love Confession</option>
+                <option value="attraction">Attraction</option>
+                <option value="admiration">Admiring Qualities</option>
+            </select>
+        </div>
+
+        <div id="confessionsContainer" class="confession-grid"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Love Confessions. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const submitConfessionBtn = document.getElementById('submitConfession');
+        const confessionsContainer = document.getElementById('confessionsContainer');
+        const searchBar = document.getElementById('searchBar');
+        const categoryFilter = document.getElementById('categoryFilter');
+        let confessions = JSON.parse(localStorage.getItem('confessions')) || [];
+
+        function displayConfessions() {
+            confessionsContainer.innerHTML = '';
+            const searchText = searchBar.value.toLowerCase();
+            const filterCategory = categoryFilter.value;
+
+            const filteredConfessions = confessions.filter(confession => {
+                const matchText = confession.title.toLowerCase().includes(searchText) || confession.text.toLowerCase().includes(searchText);
+                const matchCategory = !filterCategory || confession.category === filterCategory;
+                return matchText && matchCategory;
+            });
+
+            filteredConfessions.forEach((confession, index) => {
+                const confessionCard = document.createElement('div');
+                confessionCard.classList.add('confession-card');
+                confessionCard.innerHTML = `
+                    <h3>${confession.anonymous ? 'Anonymous' : confession.title}</h3>
+                    <p>${confession.text}</p>
+                    <p><small>${new Date(confession.timestamp).toLocaleString()}</small></p>
+                    <div class="reactions">
+                        <div class="reaction-btn" onclick="react(${index}, 'love')">❤️ <span class="reaction-count">${confession.reactions.love}</span></div>
+                        <div class="reaction-btn" onclick="react(${index}, 'admiration')">👍 <span class="reaction-count">${confession.reactions.admiration}</span></div>
+                    </div>
+                `;
+                confessionsContainer.appendChild(confessionCard);
+            });
+        }
+
+        function submitConfession() {
+            const title = document.getElementById('confessionTitle').value;
+            const category = document.getElementById('confessionCategory').value;
+            const text = document.getElementById('confessionText').value;
+            const anonymous = document.getElementById('anonymous').checked;
+
+            if (!text) {
+                alert('Please enter a confession!');
+                return;
+            }
+
+            const newConfession = {
+                title: anonymous ? 'Anonymous' : title,
+                category,
+                text,
+                anonymous,
+                timestamp: new Date().toISOString(),
+                reactions: { love: 0, admiration: 0 }
+            };
+
+            confessions.push(newConfession);
+            localStorage.setItem('confessions', JSON.stringify(confessions));
+            displayConfessions();
+        }
+
+        function react(index, type) {
+            confessions[index].reactions[type]++;
+            localStorage.setItem('confessions', JSON.stringify(confessions));
+            displayConfessions();
+        }
+
+        submitConfessionBtn.addEventListener('click', submitConfession);
+        searchBar.addEventListener('input', displayConfessions);
+        categoryFilter.addEventListener('change', displayConfessions);
+
+        window.onload = displayConfessions;
+    </script>
+</body>
+</html>
