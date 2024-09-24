@@ -1,9 +1,9 @@
 /* General styling for all icon buttons */
 .icon-btn {
-  color: gray; /* Default icon color */
-  font-size: 24px; /* Adjust icon size */
+  color: rgb(232, 168, 168); /* Default icon color */
+  font-size: 20px; /* Adjust icon size to be smaller */
   cursor: pointer;
-  margin-right: 10px; /* Spacing between icons */
+  margin-right: 30px; /* More spacing between icons */
   transition: color 0.3s ease; /* Smooth color change on hover */
   background: none;
   border: none;
@@ -26,7 +26,7 @@
     transform: scale(1);
   }
   50% {
-    transform: scale(1.4); /* Increase size briefly */
+    transform: scale(1.2); /* Increase size briefly */
   }
   100% {
     transform: scale(1); /* Go back to original size */
