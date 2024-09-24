@@ -43,9 +43,9 @@ const PostCard = ({ post }) => {
           <button className="like-btn" onClick={handleLike}>
             Like ({likes})
           </button>
-          <button className="react-btn" onClick={handleReact}>
+          {/*<button className="react-btn" onClick={handleReact}>
             React ({reactions})
-          </button>
+          </button>*/}
           <button className="share-btn" onClick={handleShare}>
             Share
           </button>
