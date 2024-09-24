@@ -2,16 +2,14 @@ import React, { useState } from 'react';
 import './PostCard.css';
 
 const PostCard = ({ post }) => {
-  // State to track likes, reactions, and comments
+  // State to track likes and comments
   const [likes, setLikes] = useState(0);
-  const [reactions, setReactions] = useState(0);
   const [showCommentForm, setShowCommentForm] = useState(false); // Toggle comment form
   const [comment, setComment] = useState(''); // Current comment input
   const [comments, setComments] = useState([]); // Store all comments for this post
 
   // Handlers for the buttons
   const handleLike = () => setLikes(likes + 1);
-  const handleReact = () => setReactions(reactions + 1);
   const handleShare = () => {
     alert(`Link copied: www.example.com/posts/${post.id}`);
   };
@@ -43,9 +41,6 @@ const PostCard = ({ post }) => {
           <button className="like-btn" onClick={handleLike}>
             Like ({likes})
           </button>
-          {/*<button className="react-btn" onClick={handleReact}>
-            React ({reactions})
-          </button>*/}
           <button className="share-btn" onClick={handleShare}>
             Share
           </button>
