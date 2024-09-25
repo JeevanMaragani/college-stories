@@ -10,10 +10,15 @@ function App() {
   // Start with an empty posts array instead of hardcoded confessions
   const [posts, setPosts] = useState([]); 
 
-  // Correctly add new posts
+  // Correctly add new posts with 'likes' and 'date' properties
   const addPost = (newPost) => {
     console.log('New confession added:', newPost);
-    setPosts((prevPosts) => [...prevPosts, newPost]); // Add new posts to the END of the list
+    const postWithMetadata = {
+      ...newPost,
+      likes: 0, // Initialize likes to 0
+      date: Date.now() // Store the current timestamp
+    };
+    setPosts((prevPosts) => [...prevPosts, postWithMetadata]); // Add new posts to the END of the list
   };
 
   return (

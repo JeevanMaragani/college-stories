@@ -1,3 +1,4 @@
+/* Container for the entire Explore Page */
 .explore-container {
   width: 100%;
   max-width: 1200px; /* Increased width for more space on larger screens */
@@ -5,6 +6,58 @@
   padding: 20px;
 }
 
+/* Search, Filter, and Sort section */
+.search-filter-sort {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; /* Wrap elements for smaller screens */
+  margin-bottom: 20px;
+  gap: 20px; /* Add gap between elements */
+}
+
+/* Style for the search input */
+.search-filter-sort input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  width: 60%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.search-filter-sort input[type="text"]:focus {
+  border-color: #3498db;
+}
+
+/* Style for the filter dropdown */
+.search-filter-sort select {
+  padding: 10px;
+  font-size: 16px;
+  width: 35%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.search-filter-sort select:focus {
+  border-color: #3498db;
+}
+
+/* Style for the sort dropdown */
+.search-filter-sort select.sort-dropdown {
+  padding: 10px;
+  font-size: 16px;
+  width: 35%; /* Same width as the filter dropdown */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.search-filter-sort select.sort-dropdown:focus {
+  border-color: #3498db;
+}
+
+/* Confession Card Layout */
 .confession-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Three-column grid */
@@ -24,27 +77,99 @@
     grid-template-columns: 1fr; /* Single-column layout */
   }
 }
-/* Search and Filter Container */
-.search-filter {
+
+/* Post Card Styling */
+.post-card {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.2s;
+}
+
+.post-card:hover {
+  transform: translateY(-5px); /* Subtle hover effect */
+}
+
+.post-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.post-card p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.post-card span {
+  display: block;
+  font-weight: bold;
+  color: #888;
+  margin-bottom: 15px;
+}
+
+/* Action buttons */
+.post-actions {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  align-items: center;
 }
 
-/* Style for the search input */
-.search-filter input {
-  padding: 10px;
-  font-size: 16px;
-  width: 60%;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.action-buttons button {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.3s;
 }
 
-/* Style for the category dropdown */
-.search-filter select {
+.action-buttons button:hover {
+  color: #000;
+}
+
+.action-buttons .like-btn.liked {
+  color: #e74c3c; /* Change like button color when liked */
+}
+
+.like-count, .comment-count {
+  margin-left: 5px;
+  font-size: 1rem;
+}
+
+.comment-form textarea {
+  width: 100%;
   padding: 10px;
-  font-size: 16px;
-  width: 35%;
+  margin-top: 10px;
+  font-size: 1rem;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 5px;
+}
+
+.comment-form button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.comment-form button:hover {
+  background-color: #2980b9;
+}
+
+.comment-section {
+  margin-top: 20px;
+}
+
+.comment {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
