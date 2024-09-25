@@ -5,11 +5,11 @@
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
-  padding-top: 100px; /* Adjust top padding to account for fixed header */
+  padding-top: 80px; /* Adjust top padding to account for fixed header */
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center; /* Ensure content is centered */
+  justify-content: flex-start;
+  align-items: center; /* Ensure content is centered horizontally */
 }
 
 /* Heading for the form */
@@ -57,7 +57,12 @@
 /* Mobile-specific styling */
 @media (max-width: 768px) {
   .confess-container {
-    padding-top: 70px; /* Reduce padding for smaller screens */
+    padding-top: 50px; /* Reduce top padding for smaller screens */
+  }
+
+  .confess-form {
+    padding-left: 10px;
+    padding-right: 10px; /* Extra padding on sides for small screens */
   }
 }
 
