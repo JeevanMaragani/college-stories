@@ -1,3 +1,5 @@
+/* ExplorePage.css */
+
 /* Container for the entire Explore Page */
 .explore-container {
   width: 100%;
@@ -39,10 +41,6 @@
   transition: border-color 0.3s ease;
 }
 
-.search-filter-sort select:focus {
-  border-color: #3498db;
-}
-
 /* Style for the sort dropdown */
 .search-filter-sort select.sort-dropdown {
   padding: 10px;
@@ -53,8 +51,22 @@
   transition: border-color 0.3s ease;
 }
 
-.search-filter-sort select.sort-dropdown:focus {
-  border-color: #3498db;
+/* For mobile devices, we’ll adjust the layout */
+@media (max-width: 480px) {
+  .search-filter-sort {
+    flex-direction: column;
+    gap: 10px; /* Add more spacing between elements */
+  }
+
+  /* Full width for search and dropdowns on mobile */
+  .search-filter-sort input[type="text"],
+  .search-filter-sort select {
+    width: 100%; /* Take up full width */
+  }
+
+  .search-filter-sort select.sort-dropdown {
+    width: 100%; /* Full width for sort dropdown */
+  }
 }
 
 /* Confession Card Layout */
