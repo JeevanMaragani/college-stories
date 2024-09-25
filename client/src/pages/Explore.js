@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import PostCard from '../components/PostCard';
 import './ExplorePage.css';
 
@@ -17,18 +17,24 @@ const Explore = ({ posts = [] }) => {
   console.log('Filtered posts:', filteredPosts);
   console.log('Visible posts:', visiblePosts);
 
-  // Load more posts when user reaches the bottom of the page
-  const loadMorePosts = () => {
+  // Memoize the loadMorePosts function to avoid recreating it on every render
+  const loadMorePosts = useCallback(() => {
+    console.log("Loading more posts..."); // Debug log
     if (visiblePosts < filteredPosts.length) {
+      console.log("Increasing visible posts");
       setVisiblePosts((prevVisiblePosts) => prevVisiblePosts + 5); // Load 5 more posts
+    } else {
+      console.log("No more posts to load");
     }
-  };
+  }, [visiblePosts, filteredPosts.length]);
 
   // Detect when user reaches the bottom of the page
   useEffect(() => {
     const handleScroll = () => {
+      console.log("User is scrolling..."); // Debug log
       const bottomReached = window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 50;
       if (bottomReached) {
+        console.log("Bottom reached!"); // Debug log
         loadMorePosts();
       }
     };
@@ -37,7 +43,7 @@ const Explore = ({ posts = [] }) => {
     
     // Cleanup the event listener
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [visiblePosts, filteredPosts.length]);
+  }, [loadMorePosts]); // Add loadMorePosts as a dependency
 
   return (
     <div className="explore-container">

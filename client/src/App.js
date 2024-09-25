@@ -15,13 +15,10 @@ function App() {
     { title: 'Confession 5', story: 'Career advice from an alum.', category: 'Career Advice' }
   ]);
 
-  // Ensure that new posts are added to the top of the list
+  // Correctly add new posts without replacing old ones
   const addPost = (newPost) => {
     console.log('New confession added:', newPost);
-    setPosts((prevPosts) => {
-      console.log('Previous posts:', prevPosts);
-      return [newPost, ...prevPosts]; // Add new posts to the top of the list
-    });
+    setPosts((prevPosts) => [...prevPosts, newPost]); // Add new posts to the END of the list
   };
 
   return (
