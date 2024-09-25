@@ -5,6 +5,7 @@ const Confess = ({ addPost }) => {
   const [title, setTitle] = useState('');
   const [story, setStory] = useState('');
   const [category, setCategory] = useState('');
+  const [confirmationMessage, setConfirmationMessage] = useState(''); // State for confirmation message
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,6 +19,7 @@ const Confess = ({ addPost }) => {
       setTitle('');
       setStory('');
       setCategory('');
+      setConfirmationMessage('Your confession has been successfully submitted!'); // Set confirmation message
     }
   };
 
@@ -62,6 +64,11 @@ const Confess = ({ addPost }) => {
 
         <button type="submit">Submit Confession</button>
       </form>
+
+      {/* Display confirmation message */}
+      {confirmationMessage && (
+        <p className="confirmation-message">{confirmationMessage}</p>
+      )}
     </div>
   );
 };

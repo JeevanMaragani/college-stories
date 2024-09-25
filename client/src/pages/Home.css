@@ -1,0 +1,82 @@
+/* Home.css */
+
+/* Global Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  /* Navbar */
+  .navbar {
+    background-color: #333;
+    padding: 15px;
+  }
+  
+  .navbar ul {
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px;
+  }
+  
+  .navbar ul li a {
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+  }
+  
+  /* Hero Section */
+  .hero {
+    text-align: center;
+    padding: 100px 20px;
+  }
+  
+  .hero h1 {
+    font-size: 48px;
+    font-weight: 700;
+    color: #333;
+  }
+  
+  .hero p {
+    font-size: 18px;
+    color: #666;
+    margin: 20px 0;
+  }
+  
+  .cta-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #1a73e8;
+    color: white;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cta-btn:hover {
+    background-color: #155ab2;
+  }
+  
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #f1f1f1;
+    color: #888;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+  
