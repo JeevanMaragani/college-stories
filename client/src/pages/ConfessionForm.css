@@ -1,6 +1,22 @@
-/* ConfessionForm.css */
+/* Confess.css */
 
-/* Style the form container */
+/* Container for the confession form */
+.confess-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-top: 100px; /* Adjust top padding for desktop to account for fixed header */
+  box-sizing: border-box;
+}
+
+/* Heading for the form */
+.confess-container h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Form styling based on ConfessionForm.css */
 form {
   display: flex;
   flex-direction: column;
@@ -10,13 +26,14 @@ form {
   margin: 20px auto;
 }
 
-/* Style for the input fields */
+/* Label for input fields */
 label {
   display: block;
   margin-bottom: 10px;
   font-weight: bold;
 }
 
+/* Input fields, textarea, and select dropdown styling */
 input[type="text"], 
 textarea, 
 select {
@@ -29,7 +46,7 @@ select {
   box-sizing: border-box;
 }
 
-/* Button styles */
+/* Submit button styling */
 button {
   padding: 10px 20px;
   font-size: 16px;
@@ -43,9 +60,37 @@ button {
 button:hover {
   background-color: #0056b3;
 }
-/* Confirmation Message Styles */
+
+/* Confirmation message styling */
 .confirmation-message {
   margin-top: 20px;
   font-size: 18px;
   color: green;
+}
+
+/* Footer at the bottom */
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #ff6f61;
+  color: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  .confess-container {
+    padding-top: 70px; /* Reduced padding for mobile to fix the extra space issue */
+  }
+
+  form {
+    margin: 15px auto;
+    width: 90%; /* Ensure the form container is responsive on smaller screens */
+  }
+
+  button {
+    width: 100%; /* Make the button full-width on mobile for better UX */
+  }
 }
