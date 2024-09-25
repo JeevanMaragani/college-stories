@@ -1,42 +1,23 @@
 import React, { useState } from 'react';
 import './PostCard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShareAlt, faComment, faThumbsUp } from '@fortawesome/free-solid-svg-icons'; // Icons for share, comment, like
+import { faShareAlt, faComment, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
 const PostCard = ({ post }) => {
   const [reactions, setReactions] = useState({
     like: 0,
-    love: 0,
-    haha: 0,
-    wow: 0,
-    sad: 0,
-    angry: 0,
   });
 
-  const [showReactionPopup, setShowReactionPopup] = useState(false); // For showing the popup on hover/click
-  const [selectedReaction, setSelectedReaction] = useState('like'); // To track the selected reaction
   const [showCommentForm, setShowCommentForm] = useState(false);
   const [comment, setComment] = useState('');
   const [comments, setComments] = useState([]);
 
-  // Handler for showing reaction popup
-  const handleShowReactions = () => {
-    setShowReactionPopup(true);
-  };
-
-  // Handler for hiding reaction popup
-  const handleHideReactions = () => {
-    setTimeout(() => setShowReactionPopup(false), 200); // Small delay to allow reaction selection
-  };
-
   // Handler for selecting a reaction
-  const handleReactionSelect = (type) => {
+  const handleLike = () => {
     setReactions({
       ...reactions,
-      [type]: reactions[type] + 1,
+      like: reactions.like + 1,
     });
-    setSelectedReaction(type); // Update the selected reaction
-    setShowReactionPopup(false); // Hide the reaction popup after selecting
   };
 
   const handleShare = () => {
@@ -65,72 +46,14 @@ const PostCard = ({ post }) => {
       <div className="post-meta">
         <span className="post-category">{post.category}</span>
         <div className="post-actions">
-          {/* Like button with reactions popup */}
-          <div
-            className="like-container"
-            onMouseEnter={handleShowReactions} // Show on hover
-            onMouseLeave={handleHideReactions} // Hide on leave
-          >
+          {/* Like button and count */}
+          <div className="like-container">
             <FontAwesomeIcon
               icon={faThumbsUp}
               className="icon-btn like-btn"
-              onClick={() => handleReactionSelect('like')}
+              onClick={handleLike}
             />
-            <span>{reactions[selectedReaction]}</span>
-
-            {/* Reaction Popup */}
-            {showReactionPopup && (
-              <div className="reaction-popup">
-                <span
-                  className="reaction"
-                  role="img"
-                  aria-label="like"
-                  onClick={() => handleReactionSelect('like')}
-                >
-                  👍
-                </span>
-                <span
-                  className="reaction"
-                  role="img"
-                  aria-label="love"
-                  onClick={() => handleReactionSelect('love')}
-                >
-                  ❤️
-                </span>
-                <span
-                  className="reaction"
-                  role="img"
-                  aria-label="haha"
-                  onClick={() => handleReactionSelect('haha')}
-                >
-                  😂
-                </span>
-                <span
-                  className="reaction"
-                  role="img"
-                  aria-label="wow"
-                  onClick={() => handleReactionSelect('wow')}
-                >
-                  😲
-                </span>
-                <span
-                  className="reaction"
-                  role="img"
-                  aria-label="sad"
-                  onClick={() => handleReactionSelect('sad')}
-                >
-                  😢
-                </span>
-                <span
-                  className="reaction"
-                  role="img"
-                  aria-label="angry"
-                  onClick={() => handleReactionSelect('angry')}
-                >
-                  😡
-                </span>
-              </div>
-            )}
+            <span className="like-count">{reactions.like}</span>
           </div>
 
           {/* Share and Comment buttons */}
