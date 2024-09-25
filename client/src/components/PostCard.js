@@ -1,20 +1,42 @@
 import React, { useState } from 'react';
 import './PostCard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faShareAlt, faComment } from '@fortawesome/free-solid-svg-icons'; // Import icons
+import { faShareAlt, faComment, faThumbsUp } from '@fortawesome/free-solid-svg-icons'; // Icons for share, comment, like
 
 const PostCard = ({ post }) => {
-  const [likes, setLikes] = useState(0);
-  const [isLiked, setIsLiked] = useState(false); // To control the animation state
+  const [reactions, setReactions] = useState({
+    like: 0,
+    love: 0,
+    haha: 0,
+    wow: 0,
+    sad: 0,
+    angry: 0,
+  });
+
+  const [showReactionPopup, setShowReactionPopup] = useState(false); // For showing the popup on hover/click
+  const [selectedReaction, setSelectedReaction] = useState('like'); // To track the selected reaction
   const [showCommentForm, setShowCommentForm] = useState(false);
   const [comment, setComment] = useState('');
   const [comments, setComments] = useState([]);
 
-  // Handlers for the buttons
-  const handleLike = () => {
-    setLikes(likes + 1);
-    setIsLiked(true); // Trigger the animation
-    setTimeout(() => setIsLiked(false), 600); // Remove animation after 600ms
+  // Handler for showing reaction popup
+  const handleShowReactions = () => {
+    setShowReactionPopup(true);
+  };
+
+  // Handler for hiding reaction popup
+  const handleHideReactions = () => {
+    setTimeout(() => setShowReactionPopup(false), 200); // Small delay to allow reaction selection
+  };
+
+  // Handler for selecting a reaction
+  const handleReactionSelect = (type) => {
+    setReactions({
+      ...reactions,
+      [type]: reactions[type] + 1,
+    });
+    setSelectedReaction(type); // Update the selected reaction
+    setShowReactionPopup(false); // Hide the reaction popup after selecting
   };
 
   const handleShare = () => {
@@ -43,11 +65,75 @@ const PostCard = ({ post }) => {
       <div className="post-meta">
         <span className="post-category">{post.category}</span>
         <div className="post-actions">
-          <FontAwesomeIcon
-            icon={faHeart}
-            className={`icon-btn like-btn ${isLiked ? 'liked' : ''}`}
-            onClick={handleLike}
-          />
+          {/* Like button with reactions popup */}
+          <div
+            className="like-container"
+            onMouseEnter={handleShowReactions} // Show on hover
+            onMouseLeave={handleHideReactions} // Hide on leave
+          >
+            <FontAwesomeIcon
+              icon={faThumbsUp}
+              className="icon-btn like-btn"
+              onClick={() => handleReactionSelect('like')}
+            />
+            <span>{reactions[selectedReaction]}</span>
+
+            {/* Reaction Popup */}
+            {showReactionPopup && (
+              <div className="reaction-popup">
+                <span
+                  className="reaction"
+                  role="img"
+                  aria-label="like"
+                  onClick={() => handleReactionSelect('like')}
+                >
+                  👍
+                </span>
+                <span
+                  className="reaction"
+                  role="img"
+                  aria-label="love"
+                  onClick={() => handleReactionSelect('love')}
+                >
+                  ❤️
+                </span>
+                <span
+                  className="reaction"
+                  role="img"
+                  aria-label="haha"
+                  onClick={() => handleReactionSelect('haha')}
+                >
+                  😂
+                </span>
+                <span
+                  className="reaction"
+                  role="img"
+                  aria-label="wow"
+                  onClick={() => handleReactionSelect('wow')}
+                >
+                  😲
+                </span>
+                <span
+                  className="reaction"
+                  role="img"
+                  aria-label="sad"
+                  onClick={() => handleReactionSelect('sad')}
+                >
+                  😢
+                </span>
+                <span
+                  className="reaction"
+                  role="img"
+                  aria-label="angry"
+                  onClick={() => handleReactionSelect('angry')}
+                >
+                  😡
+                </span>
+              </div>
+            )}
+          </div>
+
+          {/* Share and Comment buttons */}
           <FontAwesomeIcon
             icon={faShareAlt}
             className="icon-btn share-btn"
@@ -61,6 +147,7 @@ const PostCard = ({ post }) => {
         </div>
       </div>
 
+      {/* Comment Form */}
       {showCommentForm && (
         <form onSubmit={handleCommentSubmit} className="comment-form">
           <textarea
@@ -73,6 +160,7 @@ const PostCard = ({ post }) => {
         </form>
       )}
 
+      {/* Display Comments */}
       {comments.length > 0 && (
         <div className="comment-section">
           <h4>Comments ({comments.length})</h4>
