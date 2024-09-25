@@ -7,10 +7,21 @@ import Communities from './pages/Communities';
 import './App.css'; // Import the CSS file for styling
 
 function App() {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState([
+    { title: 'Confession 1', story: 'This is the first confession.', category: 'Admiration' },
+    { title: 'Confession 2', story: 'Another story about college.', category: 'Relationships' },
+    { title: 'Confession 3', story: 'Struggling with academics.', category: 'Academic Struggles' },
+    { title: 'Confession 4', story: 'A funny moment in class.', category: 'Funny Story' },
+    { title: 'Confession 5', story: 'Career advice from an alum.', category: 'Career Advice' }
+  ]);
 
+  // Ensure that new posts are added to the top of the list
   const addPost = (newPost) => {
-    setPosts((prevPosts) => [newPost, ...prevPosts]);
+    console.log('New confession added:', newPost);
+    setPosts((prevPosts) => {
+      console.log('Previous posts:', prevPosts);
+      return [newPost, ...prevPosts]; // Add new posts to the top of the list
+    });
   };
 
   return (

@@ -11,15 +11,16 @@ const Confess = ({ addPost }) => {
     e.preventDefault();
     if (story.trim() && category) {
       const newPost = {
-        title: title || 'An Anonymous Confession', // Generate default title if not provided
+        title: title || 'An Anonymous Confession',
         story,
         category,
       };
-      addPost(newPost); // Call the addPost function passed from App.js to add the new confession
+      console.log('Form submission:', newPost);
+      addPost(newPost); // Call the addPost function passed from App.js
       setTitle('');
       setStory('');
       setCategory('');
-      setConfirmationMessage('Your confession has been successfully submitted!'); // Set confirmation message
+      setConfirmationMessage('Your confession has been successfully submitted!');
     }
   };
 

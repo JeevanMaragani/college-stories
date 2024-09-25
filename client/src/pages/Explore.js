@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import PostCard from '../components/PostCard'; // Import PostCard component
-import './ExplorePage.css'; // Optional: If there's additional styling
+import React, { useState, useEffect } from 'react';
+import PostCard from '../components/PostCard';
+import './ExplorePage.css';
 
 const Explore = ({ posts = [] }) => {
-  const [searchTerm, setSearchTerm] = useState('');  // State for search input
-  const [filterCategory, setFilterCategory] = useState(''); // State for category filter
+  const [visiblePosts, setVisiblePosts] = useState(5); // Start by displaying 5 posts
+  const [searchTerm, setSearchTerm] = useState('');  
+  const [filterCategory, setFilterCategory] = useState('');
 
   // Filter posts based on search term and category
   const filteredPosts = posts.filter((post) => {
@@ -12,6 +13,31 @@ const Explore = ({ posts = [] }) => {
     const matchesCategory = filterCategory === '' || post.category === filterCategory;
     return matchesSearch && matchesCategory;
   });
+
+  console.log('Filtered posts:', filteredPosts);
+  console.log('Visible posts:', visiblePosts);
+
+  // Load more posts when user reaches the bottom of the page
+  const loadMorePosts = () => {
+    if (visiblePosts < filteredPosts.length) {
+      setVisiblePosts((prevVisiblePosts) => prevVisiblePosts + 5); // Load 5 more posts
+    }
+  };
+
+  // Detect when user reaches the bottom of the page
+  useEffect(() => {
+    const handleScroll = () => {
+      const bottomReached = window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 50;
+      if (bottomReached) {
+        loadMorePosts();
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    
+    // Cleanup the event listener
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [visiblePosts, filteredPosts.length]);
 
   return (
     <div className="explore-container">
@@ -40,13 +66,11 @@ const Explore = ({ posts = [] }) => {
 
       {/* Confession Cards */}
       <div className="confession-cards">
-        {filteredPosts.length > 0 ? (
-          filteredPosts.map((post, index) => (
-            <PostCard key={index} post={post} /> // Pass filtered posts to PostCard
-          ))
-        ) : (
-          <p>No posts match your search or category.</p>
-        )}
+        {filteredPosts.slice(0, visiblePosts).map((post, index) => (
+          <PostCard key={index} post={post} /> // Display only the visible posts
+        ))}
+
+        {visiblePosts >= filteredPosts.length && <p>No more stories to load.</p>}
       </div>
     </div>
   );
