@@ -1,72 +1,61 @@
 import React, { useState } from 'react';
 import './PostCard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShareAlt, faComment, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faComment, faShare } from '@fortawesome/free-solid-svg-icons';
 
 const PostCard = ({ post }) => {
-  const [reactions, setReactions] = useState({
-    like: 0,
-  });
-
-  const [showCommentForm, setShowCommentForm] = useState(false);
-  const [comment, setComment] = useState('');
+  const [likes, setLikes] = useState(0);
+  const [isLiked, setIsLiked] = useState(false);
   const [comments, setComments] = useState([]);
+  const [showCommentForm, setShowCommentForm] = useState(false);
+  const [newComment, setNewComment] = useState('');
 
-  // Handler for selecting a reaction
   const handleLike = () => {
-    setReactions({
-      ...reactions,
-      like: reactions.like + 1,
-    });
-  };
-
-  const handleShare = () => {
-    alert(`Link copied: www.example.com/posts/${post.id}`);
-  };
-
-  const handleComment = () => {
-    setShowCommentForm(!showCommentForm);
+    if (!isLiked) {
+      setLikes(likes + 1);
+      setIsLiked(true);
+    } else {
+      setLikes(likes - 1);
+      setIsLiked(false);
+    }
   };
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
-    if (comment.trim()) {
-      setComments([...comments, comment]);
-      setComment('');
-      setShowCommentForm(false);
+    if (newComment.trim()) {
+      setComments([...comments, newComment]);
+      setNewComment('');
     }
   };
 
-  return (
-    <div className={`post-card post-category-${post.category.toLowerCase()}`}>
-      <div className="post-content">
-        <h3>{post.title}</h3>
-        <p>{post.content}</p>
-      </div>
-      <div className="post-meta">
-        <span className="post-category">{post.category}</span>
-        <div className="post-actions">
-          {/* Like button and count */}
-          <div className="like-container">
-            <FontAwesomeIcon
-              icon={faThumbsUp}
-              className="icon-btn like-btn"
-              onClick={handleLike}
-            />
-            <span className="like-count">{reactions.like}</span>
-          </div>
+  const handleShare = () => {
+    navigator.clipboard.writeText(`www.example.com/posts/${post.id}`);
+    alert('Link copied!');
+  };
 
-          {/* Share and Comment buttons */}
-          <FontAwesomeIcon
-            icon={faShareAlt}
-            className="icon-btn share-btn"
-            onClick={handleShare}
-          />
-          <FontAwesomeIcon
-            icon={faComment}
-            className="icon-btn comment-btn"
-            onClick={handleComment}
-          />
+  return (
+    <div className="post-card">
+      {/* Render the title, story, and category */}
+      <h3>{post.title || 'An Anonymous Confession'}</h3>
+      <p>{post.story}</p>
+      <span>{post.category}</span>
+
+      {/* Like, Comment, and Share buttons */}
+      <div className="post-actions">
+        <div className="action-buttons">
+          <button className={`like-btn ${isLiked ? 'liked' : ''}`} onClick={handleLike}>
+            <FontAwesomeIcon icon={faHeart} />
+            <span className="like-count">{likes}</span>
+          </button>
+
+          <button className="comment-btn" onClick={() => setShowCommentForm(!showCommentForm)}>
+            <FontAwesomeIcon icon={faComment} />
+            <span className="comment-count">{comments.length}</span>
+          </button>
+
+          <button className="share-btn" onClick={handleShare}>
+            <FontAwesomeIcon icon={faShare} />
+          </button>
         </div>
       </div>
 
@@ -74,24 +63,23 @@ const PostCard = ({ post }) => {
       {showCommentForm && (
         <form onSubmit={handleCommentSubmit} className="comment-form">
           <textarea
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-            placeholder="Write your comment here..."
+            value={newComment}
+            onChange={(e) => setNewComment(e.target.value)}
+            placeholder="Write a comment..."
             required
           />
-          <button type="submit">Submit Comment</button>
+          <button type="submit">Submit</button>
         </form>
       )}
 
       {/* Display Comments */}
       {comments.length > 0 && (
         <div className="comment-section">
-          <h4>Comments ({comments.length})</h4>
-          <ul>
-            {comments.map((cmt, index) => (
-              <li key={index}>{cmt}</li>
-            ))}
-          </ul>
+          {comments.map((comment, index) => (
+            <div key={index} className="comment">
+              <p>{comment}</p>
+            </div>
+          ))}
         </div>
       )}
     </div>

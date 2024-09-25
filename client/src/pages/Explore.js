@@ -1,33 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import './ExplorePage.css'; // Make sure to create and link the CSS file for styling
+import React from 'react';
+import PostCard from '../components/PostCard'; // Import PostCard component
+import './ExplorePage.css'; // Optional: If there's additional styling
 
-const ExplorePage = () => {
-  const [confessions, setConfessions] = useState([]);
-
-  // Simulating data fetch from local storage or backend
-  useEffect(() => {
-    const storedConfessions = JSON.parse(localStorage.getItem('confessions')) || [];
-    setConfessions(storedConfessions);
-  }, []);
-
+const Explore = ({ posts }) => {
   return (
     <div className="explore-container">
-      <h1>Explore Stories</h1>
-      {confessions.length === 0 ? (
-        <p>No posts yet. Be the first to confess!</p>
-      ) : (
-        <div className="confession-cards">
-          {confessions.map((confession, index) => (
-            <div key={index} className="confession-card">
-              <h3>{confession.title}</h3>
-              <p>{confession.story}</p>
-              <span className="category-label">{confession.category}</span>
-            </div>
-          ))}
-        </div>
-      )}
+      <h2>Explore Stories</h2>
+      <div className="confession-cards">
+        {posts.length > 0 ? (
+          posts.map((post, index) => (
+            <PostCard key={index} post={post} /> // Pass post to PostCard
+          ))
+        ) : (
+          <p>No posts yet. Be the first to confess!</p>
+        )}
+      </div>
     </div>
   );
 };
 
-export default ExplorePage;
+export default Explore;

@@ -6,10 +6,10 @@ import Confess from './pages/Confess';
 import Communities from './pages/Communities';
 
 function App() {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState([]); // Initialize an empty posts array
 
-  const addPost = (post) => {
-    setPosts([post, ...posts]); // Add new post to the top
+  const addPost = (newPost) => {
+    setPosts((prevPosts) => [newPost, ...prevPosts]); // Add the new post to the existing posts
   };
 
   return (
