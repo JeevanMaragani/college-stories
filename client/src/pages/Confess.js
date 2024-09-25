@@ -11,8 +11,8 @@ const Confess = ({ addPost }) => {
     e.preventDefault();
     if (story.trim() && category) {
       const newPost = {
-        title: title || 'An Anonymous Confession',
-        story,
+        title: title || 'An Anonymous Confession', // Use default title if not provided
+        story,  // This captures the content of the confession
         category,
       };
       console.log('Form submission:', newPost);

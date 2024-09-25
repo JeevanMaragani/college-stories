@@ -7,15 +7,10 @@ import Communities from './pages/Communities';
 import './App.css'; // Import the CSS file for styling
 
 function App() {
-  const [posts, setPosts] = useState([
-    { title: 'Confession 1', story: 'This is the first confession.', category: 'Admiration' },
-    { title: 'Confession 2', story: 'Another story about college.', category: 'Relationships' },
-    { title: 'Confession 3', story: 'Struggling with academics.', category: 'Academic Struggles' },
-    { title: 'Confession 4', story: 'A funny moment in class.', category: 'Funny Story' },
-    { title: 'Confession 5', story: 'Career advice from an alum.', category: 'Career Advice' }
-  ]);
+  // Start with an empty posts array instead of hardcoded confessions
+  const [posts, setPosts] = useState([]); 
 
-  // Correctly add new posts without replacing old ones
+  // Correctly add new posts
   const addPost = (newPost) => {
     console.log('New confession added:', newPost);
     setPosts((prevPosts) => [...prevPosts, newPost]); // Add new posts to the END of the list
