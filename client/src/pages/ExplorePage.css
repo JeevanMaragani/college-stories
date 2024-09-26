@@ -2,10 +2,11 @@
 
 /* Container for the entire Explore Page */
 .explore-container {
-  width: 100%;
+  width: 100%;  /* Ensure it always takes up full width */
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  box-sizing: border-box; /* Ensure padding is included in the width calculation */
 }
 
 /* Search, Filter, and Sort section */
@@ -15,13 +16,15 @@
   flex-wrap: wrap;
   margin-bottom: 20px;
   gap: 20px;
+  width: 100%;  /* Ensure full width on all screens */
+  box-sizing: border-box;
 }
 
 /* Style for the search input */
 .search-filter-sort input[type="text"] {
   padding: 10px;
   font-size: 16px;
-  width: 35%;
+  width: 100%;  /* Full width on mobile */
   max-width: 200px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -31,7 +34,7 @@
 .search-filter-sort select {
   padding: 10px;
   font-size: 16px;
-  width: 35%;
+  width: 100%;  /* Full width on mobile */
   max-width: 200px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -41,7 +44,7 @@
 .search-filter-sort select.sort-dropdown {
   padding: 10px;
   font-size: 16px;
-  width: 35%;
+  width: 100%;  /* Full width on mobile */
   max-width: 200px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -52,13 +55,22 @@
   .search-filter-sort {
     flex-direction: column;
     gap: 10px;
+    width: 100%;
   }
 
   /* Full width for search and dropdowns on mobile */
   .search-filter-sort input[type="text"],
   .search-filter-sort select {
     width: 100%;
-    max-width: 100%;
+    max-width: 100%; /* Prevent overflow on mobile */
+  }
+
+  .search-filter-sort select.sort-dropdown {
+    width: 100%;
+  }
+
+  .search-filter-sort {
+    margin-bottom: 15px;
   }
 }
 
@@ -67,16 +79,56 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
+/* For tablets and smaller devices, switch to a two-column grid */
 @media (max-width: 768px) {
   .confession-cards {
     grid-template-columns: repeat(2, 1fr);
+    width: 100%;
   }
 }
 
+/* For mobile devices, switch to a single-column layout */
 @media (max-width: 480px) {
   .confession-cards {
     grid-template-columns: 1fr;
+    width: 100%;
   }
+}
+
+/* Post Card Styling */
+.post-card {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.2s;
+  width: 100%;
+}
+
+.post-card:hover {
+  transform: translateY(-5px);
+}
+
+.post-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.post-card p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.post-card span {
+  display: block;
+  font-weight: bold;
+  color: #888;
+  margin-bottom: 15px;
 }
