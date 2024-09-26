@@ -3,13 +3,13 @@
 /* Header Styles */
 header {
   text-align: center;
-  padding: 20px;
+  padding: 15px; /* Reduced padding slightly for better fit */
   background-color: #3498db;
   color: white;
 }
 
 header h1 {
-  font-size: 2.5rem; /* Adjusted for better fit */
+  font-size: 3rem;
   font-weight: bold;
   margin: 0;
 }
@@ -21,7 +21,7 @@ nav ul {
   margin: 20px 0 0 0;
   display: flex;
   justify-content: center;
-  flex-wrap: nowrap; /* Ensuring horizontal layout */
+  flex-wrap: nowrap; /* Ensure navigation links are aligned horizontally */
   align-items: center;
 }
 
@@ -40,6 +40,26 @@ nav ul li a {
 
 nav ul li a:hover {
   background-color: #2980b9;
+}
+
+/* Adjustments for Mobile */
+@media (max-width: 768px) {
+  nav ul {
+    justify-content: space-around; /* Evenly space navigation links */
+  }
+
+  header h1 {
+    font-size: 2.5rem; /* Slightly smaller for mobile */
+  }
+
+  nav ul li {
+    margin: 5px; /* Reduce margin for tighter spacing */
+  }
+
+  nav ul li a {
+    padding: 8px 10px; /* Adjust padding for mobile */
+    font-size: 1.1rem; /* Smaller font for better fit */
+  }
 }
 
 /* Home Page Box Grid (PRESERVED) */
@@ -76,41 +96,26 @@ nav ul li a:hover {
   color: #555;
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-  nav ul {
-    flex-wrap: wrap; /* Ensure wrapping on smaller screens */
-    justify-content: space-around; /* Space evenly */
-  }
-
-  header h1 {
-    font-size: 2rem; /* Smaller title */
-  }
-
-  nav ul li {
-    margin: 5px; /* Adjust margins for mobile */
-  }
-
-  nav ul li a {
-    padding: 8px 10px;
-    font-size: 1.1rem; /* Smaller text for mobile */
-  }
-
-  /* Story cards for mobile */
+/* Responsive Adjustments */
+@media (min-width: 769px) {
   .home-featured-stories {
-    grid-template-columns: 1fr 1fr; /* Two columns on tablets and mobiles */
-    gap: 15px;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on large screens */
   }
 }
 
-/* Very Small Screens (Below 480px) */
+@media (max-width: 768px) {
+  .home-featured-stories {
+    grid-template-columns: 1fr 1fr; /* 2 columns on tablets */
+  }
+}
+
 @media (max-width: 480px) {
   .home-featured-stories {
-    grid-template-columns: 1fr; /* One column on very small screens */
+    grid-template-columns: 1fr; /* 1 column on small screens */
   }
 
   header h1 {
-    font-size: 1.8rem;
+    font-size: 2rem; /* Reduce header font size on smaller screens */
   }
 
   nav ul li a {
@@ -177,12 +182,12 @@ nav ul li a:hover {
 
 .fab-button:hover .fab-tooltip,
 .fab-button:focus .fab-tooltip {
-  opacity: 1;
+  opacity: 1; /* Show tooltip on hover or focus */
 }
 
 /* Hide "Confess" on Mobile */
 @media (max-width: 768px) {
   nav ul li a[href="/confess"] {
-    display: none;
+    display: none; /* Hide Confess link on mobile */
   }
 }

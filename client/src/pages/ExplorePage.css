@@ -52,7 +52,7 @@
 }
 
 /* For mobile devices, we’ll adjust the layout */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .search-filter-sort {
     flex-direction: column;
     gap: 10px; /* Add more spacing between elements */
@@ -66,6 +66,10 @@
 
   .search-filter-sort select.sort-dropdown {
     width: 100%; /* Full width for sort dropdown */
+  }
+
+  .search-filter-sort {
+    margin-bottom: 15px; /* Adjust margin for mobile */
   }
 }
 
