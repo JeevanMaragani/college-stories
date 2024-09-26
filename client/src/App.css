@@ -14,16 +14,18 @@ header h1 {
   margin: 0;
 }
 
+/* Navigation Links - Horizontal on all screens */
 nav ul {
   list-style: none;
   padding: 0;
-  margin: 20px 0 0 0; /* Add some spacing between title and links */
+  margin: 20px 0 0 0; /* Space between title and links */
   display: flex;
-  justify-content: center;
+  justify-content: space-around; /* Ensure even spacing on all screens */
+  align-items: center;
 }
 
 nav ul li {
-  margin: 0 20px;
+  margin: 0 15px;
 }
 
 nav ul li a {
@@ -39,11 +41,11 @@ nav ul li a:hover {
   background-color: #2980b9; /* Slightly darker blue on hover */
 }
 
-/* Home Page Box Grid */
+/* Story Card Layout */
 .home-featured-stories {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Three-column grid */
-  gap: 20px;
+  grid-template-columns: repeat(2, 1fr); /* Two-column grid on mobile */
+  gap: 15px;
   margin: 40px auto;
   padding: 20px;
   max-width: 1200px;
@@ -51,7 +53,7 @@ nav ul li a:hover {
 
 .featured-story {
   background-color: #f9f9f9;
-  padding: 20px;
+  padding: 15px;
   border: 1px solid #ddd;
   border-radius: 8px;
   text-align: center;
@@ -73,15 +75,39 @@ nav ul li a:hover {
   color: #555;
 }
 
-/* Responsive adjustments for smaller screens */
-@media (max-width: 768px) {
+/* Responsive Adjustments */
+@media (min-width: 769px) {
   .home-featured-stories {
-    grid-template-columns: 1fr 1fr; /* Two-column layout on smaller screens */
+    grid-template-columns: repeat(3, 1fr); /* Three-column layout on web */
+  }
+}
+
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2.5rem; /* Slightly smaller title on tablets */
+  }
+
+  nav ul {
+    justify-content: space-between; /* Keep navigation links horizontal on mobile */
+  }
+
+  .home-featured-stories {
+    grid-template-columns: 1fr 1fr; /* Two-column layout for mobile */
   }
 }
 
 @media (max-width: 480px) {
+  header h1 {
+    font-size: 2rem; /* Smaller title for mobile screens */
+  }
+
+  nav ul li a {
+    font-size: 1.1rem; /* Slightly smaller links for mobile */
+    padding: 10px 10px;
+  }
+
   .home-featured-stories {
-    grid-template-columns: 1fr; /* Single column layout on very small screens */
+    grid-template-columns: 1fr; /* Single column for very small screens */
   }
 }
+
