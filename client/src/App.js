@@ -7,32 +7,32 @@ import Communities from './pages/Communities';
 import './App.css'; // Import the updated CSS file for styling
 
 function App() {
-  // Start with an empty posts array instead of hardcoded confessions
   const [posts, setPosts] = useState([]);
 
-  // Correctly add new posts with 'likes' and 'date' properties
   const addPost = (newPost) => {
     console.log('New confession added:', newPost);
     const postWithMetadata = {
       ...newPost,
-      likes: 0, // Initialize likes to 0
-      date: Date.now() // Store the current timestamp
+      likes: 0,
+      date: Date.now(),
     };
-    setPosts((prevPosts) => [...prevPosts, postWithMetadata]); // Add new posts to the END of the list
+    setPosts((prevPosts) => [...prevPosts, postWithMetadata]);
   };
 
   return (
     <Router>
       <div>
-        {/* Header with large title and navigation links */}
+        {/* Fixed Header */}
         <header>
-          <h1>College Stories</h1> {/* Large, bold title */}
+          <div className="logo">
+            <Link to="/">College Stories</Link>
+          </div>
           <nav>
             <ul>
               <li><Link to="/explore">Explore</Link></li>
               <li><Link to="/confess">Confess</Link></li>
               <li><Link to="/communities">Communities</Link></li>
-              <li><Link to="/">Home</Link></li> {/* Home link placed last */}
+              <li><Link to="/">Home</Link></li>
             </ul>
           </nav>
         </header>
@@ -47,10 +47,12 @@ function App() {
           </Routes>
         </div>
 
-        {/* Optional Footer */}
-        <footer>
-          <p>&copy; {new Date().getFullYear()} College Stories</p>
-        </footer>
+        {/* Floating Action Button for Confession */}
+        <div className="fab">
+          <Link to="/confess">
+            <button className="fab-button">+</button>
+          </Link>
+        </div>
       </div>
     </Router>
   );
