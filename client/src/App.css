@@ -3,15 +3,28 @@
 /* Header Styles */
 header {
   text-align: center;
-  padding: 15px; /* Adjusted padding */
-  background-color: #3498db;
+  padding: 60px 20px; /* Adjusted padding */
+  background: linear-gradient(90deg, #3498db, #2980b9); /* Smooth color transition */
   color: white;
   position: fixed;
   top: 0;
+  left:0;
+  right:0;
   width: 100%;
   z-index: 1000;
   height: 80px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /*adds a modern shadow effect */
+  border-bottom: 2px solid #2980b9; /* Slight border at the bottom for a clean separation */
   }
+  .logo {
+    font-size: 2rem;
+    text-align: center;
+    margin-left: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    
+  }
+  
 
 header h1 {
   font-size: 3rem;
@@ -23,39 +36,48 @@ header h1 {
 nav ul {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin:0 auto;/* Centers the whole list horizontally*/
   display: flex;
   justify-content: center;
   flex-wrap: nowrap;
   align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.2); /* Light line separating the logo and links */
+  padding-top: 10px; /* Move the links lower */
 }
 
 nav ul li {
-  margin: 0 10px;
+  margin: 0 15px; /* Adds spacing between navigation links */
 }
 
 nav ul li a {
   color: white;
   text-decoration: none;
   font-size: 1.2rem;
-  padding: 10px 15px;
-  border-radius: 5px;
+  padding: 10px 20px;
+  border-radius: 25px; /*Rounded edges for a more modern button look */
+  background-color: rgba(255, 255, 255, 0.1); /* Slight background for each button */
   transition: background-color 0.3s ease;
 }
 
 nav ul li a:hover {
-  background-color: #2980b9;
+  background-color: rgba(255, 255, 255, 0.2); /* change color on hover */
+  transform: scale(1.05); /*slight zoom on hover*/
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /*Adds a soft shadow when hovered*/
+  transition: all 0.3s ease; /*smooth transition*/
 }
 /*Main content styling (adjust for header height) */
 .container{
   margin-top: 140px; /*push the content down below the header */
+  padding-top: 90px; /*Adjust the value to match the height or padding of the header*/
+  min-height: calc(100vh - 120px); /* Adjust based on the header height */
+  overflow-y: auto;
 }
 
 /* Home Page Featured Story Box Grid */
 .home-featured-stories {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Three-column grid */
-  gap: 20px;
+  gap: 30px; /* Increase the gap between the cards*/
   margin: 40px auto;
   padding: 20px;
   max-width: 1200px;
@@ -110,7 +132,7 @@ nav ul li a:hover {
   }
   /* Responsive Featured Stories on Tablets */
   .home-featured-stories {
-    grid-template-columns: 1fr 1fr; /* Two columns on tablets */
+    grid-template-columns: repeat(2, 1fr); /* Two columns on tablets */
   }
 }
 
@@ -140,7 +162,12 @@ nav ul li a:hover {
   right: 20px;
   z-index: 100;
 }
-
+@media (max-width: 480px){
+  .fab{
+    right: 10px; /* Adjusts FAB positioning on smaller screens */
+    bottom: 10px;
+  }
+}
 .fab-button {
   background-color: #3498db;
   color: white;
@@ -188,4 +215,8 @@ nav ul li a:hover {
 .fab-button:hover .fab-tooltip,
 .fab-button:focus .fab-tooltip {
   opacity: 1;
+}
+body {
+  min-height: 100vh; /* Ensure the body is at least 100% of the viewport height */
+  overflow-y: auto;  /* Enable vertical scrolling */
 }

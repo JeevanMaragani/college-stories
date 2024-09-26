@@ -5,6 +5,8 @@ import Explore from './pages/Explore';
 import Confess from './pages/Confess';
 import Communities from './pages/Communities';
 import './App.css'; // Import the updated CSS file for styling
+import { faHome, faSearch, faUsers, faComment } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -30,10 +32,10 @@ function App() {
           <nav>
             <ul>
               {/* Reordered Links: Home first */}
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/explore">Explore</Link></li>
-              <li><Link to="/communities">Communities</Link></li>
-              <li className="confess-link"><Link to="/confess">Confess</Link></li> {/* Hidden on mobile but visible on web */}
+              <li><Link to="/"><FontAwesomeIcon icon={faHome}/> Home</Link></li>
+              <li><Link to="/explore"><FontAwesomeIcon icon={faSearch}/> Explore</Link></li>
+              <li><Link to="/communities"><FontAwesomeIcon icon={faUsers}/> Communities</Link></li>
+              <li className="confess-link"><Link to="/confess"><FontAwesomeIcon icon={faComment}/> Confess</Link></li> {/* Hidden on mobile but visible on web */}
             </ul>
           </nav>
         </header>
