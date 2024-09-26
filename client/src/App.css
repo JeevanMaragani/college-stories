@@ -9,7 +9,7 @@ header {
 }
 
 header h1 {
-  font-size: 3rem;
+  font-size: 2.5rem; /* Adjusted for better fit */
   font-weight: bold;
   margin: 0;
 }
@@ -21,7 +21,7 @@ nav ul {
   margin: 20px 0 0 0;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* Ensuring horizontal layout */
   align-items: center;
 }
 
@@ -76,22 +76,50 @@ nav ul li a:hover {
   color: #555;
 }
 
-/* Responsive Adjustments */
-@media (min-width: 769px) {
-  .home-featured-stories {
-    grid-template-columns: repeat(3, 1fr); /* 3 columns on large screens */
-  }
-}
-
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
+  nav ul {
+    flex-wrap: wrap; /* Ensure wrapping on smaller screens */
+    justify-content: space-around; /* Space evenly */
+  }
+
+  header h1 {
+    font-size: 2rem; /* Smaller title */
+  }
+
+  nav ul li {
+    margin: 5px; /* Adjust margins for mobile */
+  }
+
+  nav ul li a {
+    padding: 8px 10px;
+    font-size: 1.1rem; /* Smaller text for mobile */
+  }
+
+  /* Story cards for mobile */
   .home-featured-stories {
-    grid-template-columns: 1fr 1fr; /* 2 columns on tablets */
+    grid-template-columns: 1fr 1fr; /* Two columns on tablets and mobiles */
+    gap: 15px;
   }
 }
 
+/* Very Small Screens (Below 480px) */
 @media (max-width: 480px) {
   .home-featured-stories {
-    grid-template-columns: 1fr; /* 1 column on small screens */
+    grid-template-columns: 1fr; /* One column on very small screens */
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  nav ul li a {
+    font-size: 1rem;
+  }
+
+  footer {
+    padding: 10px;
+    font-size: 0.8rem; /* Smaller footer */
   }
 }
 
@@ -149,12 +177,12 @@ nav ul li a:hover {
 
 .fab-button:hover .fab-tooltip,
 .fab-button:focus .fab-tooltip {
-  opacity: 1; /* Show tooltip on hover or focus */
+  opacity: 1;
 }
 
 /* Hide "Confess" on Mobile */
 @media (max-width: 768px) {
   nav ul li a[href="/confess"] {
-    display: none; /* Hide Confess link on mobile */
+    display: none;
   }
 }
