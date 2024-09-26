@@ -9,8 +9,8 @@ import './App.css'; // Import the updated CSS file for styling
 function App() {
   const [posts, setPosts] = useState([]);
 
+  // Add new posts with metadata (likes, date)
   const addPost = (newPost) => {
-    console.log('New confession added:', newPost);
     const postWithMetadata = {
       ...newPost,
       likes: 0,
@@ -50,7 +50,10 @@ function App() {
         {/* Floating Action Button for Confession */}
         <div className="fab">
           <Link to="/confess">
-            <button className="fab-button">+</button>
+            <button className="fab-button">
+              +
+              <span className="fab-tooltip">Submit Confession</span>
+            </button>
           </Link>
         </div>
       </div>
