@@ -104,7 +104,10 @@ nav ul li a:hover {
     padding: 8px 10px;
     font-size: 1.1rem;
   }
-
+  /* Hide "confesss" link on mobile screens */
+  .confess-link{
+    display: none;
+  }
   /* Responsive Featured Stories on Tablets */
   .home-featured-stories {
     grid-template-columns: 1fr 1fr; /* Two columns on tablets */

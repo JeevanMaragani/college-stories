@@ -33,7 +33,7 @@ function App() {
               <li><Link to="/">Home</Link></li>
               <li><Link to="/explore">Explore</Link></li>
               <li><Link to="/communities">Communities</Link></li>
-              <li><Link to="/confess">Confess</Link></li> {/* Hidden on mobile but visible on web */}
+              <li className="confess-link"><Link to="/confess">Confess</Link></li> {/* Hidden on mobile but visible on web */}
             </ul>
           </nav>
         </header>
