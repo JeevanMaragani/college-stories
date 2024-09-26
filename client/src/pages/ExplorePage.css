@@ -3,7 +3,7 @@
 /* Container for the entire Explore Page */
 .explore-container {
   width: 100%;
-  max-width: 1200px; /* Increased width for more space on larger screens */
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -12,9 +12,9 @@
 .search-filter-sort {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap; /* Wrap elements for smaller screens */
+  flex-wrap: wrap;
   margin-bottom: 20px;
-  gap: 20px; /* Add gap between elements */
+  gap: 20px;
 }
 
 /* Style for the search input */
@@ -45,7 +45,7 @@
 .search-filter-sort select.sort-dropdown {
   padding: 10px;
   font-size: 16px;
-  width: 35%; /* Same width as the filter dropdown */
+  width: 35%;
   border: 1px solid #ccc;
   border-radius: 4px;
   transition: border-color 0.3s ease;
@@ -55,42 +55,42 @@
 @media (max-width: 768px) {
   .search-filter-sort {
     flex-direction: column;
-    gap: 10px; /* Add more spacing between elements */
+    gap: 10px;
   }
 
   /* Full width for search and dropdowns on mobile */
   .search-filter-sort input[type="text"],
   .search-filter-sort select {
-    width: 100%; /* Take up full width */
+    width: 100%;
   }
 
   .search-filter-sort select.sort-dropdown {
-    width: 100%; /* Full width for sort dropdown */
+    width: 100%;
   }
 
   .search-filter-sort {
-    margin-bottom: 15px; /* Adjust margin for mobile */
+    margin-bottom: 15px;
   }
 }
 
 /* Confession Card Layout */
 .confession-cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Three-column grid */
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
-/* For tablets and smaller devices, we’ll switch to a two-column grid */
+/* For tablets and smaller devices, switch to a two-column grid */
 @media (max-width: 768px) {
   .confession-cards {
-    grid-template-columns: repeat(2, 1fr); /* Two-column grid */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* For mobile devices, we’ll switch to a single-column layout */
+/* For mobile devices, switch to a single-column layout */
 @media (max-width: 480px) {
   .confession-cards {
-    grid-template-columns: 1fr; /* Single-column layout */
+    grid-template-columns: 1fr;
   }
 }
 
@@ -105,7 +105,7 @@
 }
 
 .post-card:hover {
-  transform: translateY(-5px); /* Subtle hover effect */
+  transform: translateY(-5px);
 }
 
 .post-card h3 {
@@ -148,7 +148,7 @@
 }
 
 .action-buttons .like-btn.liked {
-  color: #e74c3c; /* Change like button color when liked */
+  color: #e74c3c;
 }
 
 .like-count, .comment-count {
