@@ -5,11 +5,11 @@
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
-  padding-top: 80px; /* Adjust top padding to account for fixed header */
+  padding-top: 40px; /* Adjust top padding to account for fixed header */
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: center; /* Ensure content is centered horizontally */
+  justify-content: center;
+  align-items: center; /* Ensure content is centered */
 }
 
 /* Heading for the form */
@@ -42,7 +42,7 @@
 
 .confess-form button {
   padding: 12px;
-  background-color: #3498db;
+  background-color: #3498db; /* Revert button color to blue */
   color: white;
   border: none;
   border-radius: 5px;
@@ -51,18 +51,13 @@
 }
 
 .confess-form button:hover {
-  background-color: #2980b9;
+  background-color: #2980b9; /* Darker blue on hover */
 }
 
 /* Mobile-specific styling */
 @media (max-width: 768px) {
   .confess-container {
-    padding-top: 50px; /* Reduce top padding for smaller screens */
-  }
-
-  .confess-form {
-    padding-left: 10px;
-    padding-right: 10px; /* Extra padding on sides for small screens */
+    padding-top: 70px; /* Reduce padding for smaller screens */
   }
 }
 
@@ -70,7 +65,7 @@
 footer {
   text-align: center;
   padding: 20px;
-  background-color: #ff6f61;
+  background-color: #3498db; /* Revert footer color to blue */
   color: #fff;
   position: fixed;
   bottom: 0;

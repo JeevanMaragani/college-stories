@@ -8,7 +8,7 @@ import './App.css'; // Import the updated CSS file for styling
 
 function App() {
   // Start with an empty posts array instead of hardcoded confessions
-  const [posts, setPosts] = useState([]); 
+  const [posts, setPosts] = useState([]);
 
   // Correctly add new posts with 'likes' and 'date' properties
   const addPost = (newPost) => {
@@ -24,18 +24,15 @@ function App() {
   return (
     <Router>
       <div>
-        {/* Fixed Header */}
+        {/* Header with large title and navigation links */}
         <header>
-          <div className="logo">
-            <Link to="/">College Stories</Link>
-          </div>
+          <h1>College Stories</h1> {/* Large, bold title */}
           <nav>
             <ul>
-              {/* Updated Order */}
               <li><Link to="/explore">Explore</Link></li>
               <li><Link to="/confess">Confess</Link></li>
               <li><Link to="/communities">Communities</Link></li>
-              <li><Link to="/">Home</Link></li>
+              <li><Link to="/">Home</Link></li> {/* Home link placed last */}
             </ul>
           </nav>
         </header>
