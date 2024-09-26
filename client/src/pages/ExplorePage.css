@@ -22,38 +22,32 @@
   padding: 10px;
   font-size: 16px;
   width: 35%;
-  max-width: 200px; /*same as dropdown width */
+  max-width: 200px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  transition: border-color 0.3s ease;
 }
 
-.search-filter-sort input[type="text"]:focus {
-  border-color: #3498db;
-}
-
-/* Style for the filter dropdown */
+/* Filter dropdown */
 .search-filter-sort select {
   padding: 10px;
   font-size: 16px;
   width: 35%;
+  max-width: 200px;
   border: 1px solid #ccc;
-  max-width: 200px; /*same as the search bar width */
   border-radius: 4px;
-  transition: border-color 0.3s ease;
 }
 
-/* Style for the sort dropdown */
+/* Sort dropdown */
 .search-filter-sort select.sort-dropdown {
   padding: 10px;
   font-size: 16px;
   width: 35%;
+  max-width: 200px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  transition: border-color 0.3s ease;
 }
 
-/* For mobile devices, we’ll adjust the layout */
+/* Mobile-specific adjustments */
 @media (max-width: 768px) {
   .search-filter-sort {
     flex-direction: column;
@@ -64,14 +58,7 @@
   .search-filter-sort input[type="text"],
   .search-filter-sort select {
     width: 100%;
-  }
-
-  .search-filter-sort select.sort-dropdown {
-    width: 100%;
-  }
-
-  .search-filter-sort {
-    margin-bottom: 15px;
+    max-width: 100%;
   }
 }
 
@@ -82,112 +69,14 @@
   gap: 20px;
 }
 
-/* For tablets and smaller devices, switch to a two-column grid */
 @media (max-width: 768px) {
   .confession-cards {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* For mobile devices, switch to a single-column layout */
 @media (max-width: 480px) {
   .confession-cards {
     grid-template-columns: 1fr;
   }
-}
-
-/* Post Card Styling */
-.post-card {
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  transition: transform 0.2s;
-}
-
-.post-card:hover {
-  transform: translateY(-5px);
-}
-
-.post-card h3 {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  color: #333;
-}
-
-.post-card p {
-  font-size: 1rem;
-  color: #555;
-  line-height: 1.6;
-}
-
-.post-card span {
-  display: block;
-  font-weight: bold;
-  color: #888;
-  margin-bottom: 15px;
-}
-
-/* Action buttons */
-.post-actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.action-buttons button {
-  background: none;
-  border: none;
-  color: #888;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-.action-buttons button:hover {
-  color: #000;
-}
-
-.action-buttons .like-btn.liked {
-  color: #e74c3c;
-}
-
-.like-count, .comment-count {
-  margin-left: 5px;
-  font-size: 1rem;
-}
-
-.comment-form textarea {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.comment-form button {
-  padding: 10px 20px;
-  margin-top: 10px;
-  background-color: #3498db;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.comment-form button:hover {
-  background-color: #2980b9;
-}
-
-.comment-section {
-  margin-top: 20px;
-}
-
-.comment {
-  background-color: #f9f9f9;
-  padding: 10px;
-  border-radius: 5px;
-  margin-bottom: 10px;
 }
