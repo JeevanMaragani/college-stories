@@ -29,10 +29,11 @@ function App() {
           </div>
           <nav>
             <ul>
-              <li><Link to="/explore">Explore</Link></li>
-              <li><Link to="/confess">Confess</Link></li>
-              <li><Link to="/communities">Communities</Link></li>
+              {/* Reordered Links: Home first */}
               <li><Link to="/">Home</Link></li>
+              <li><Link to="/explore">Explore</Link></li>
+              <li><Link to="/communities">Communities</Link></li>
+              <li><Link to="/confess">Confess</Link></li> {/* Hidden on mobile but visible on web */}
             </ul>
           </nav>
         </header>

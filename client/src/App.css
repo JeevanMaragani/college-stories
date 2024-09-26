@@ -151,9 +151,10 @@ nav ul li a:hover {
 .fab-button:focus .fab-tooltip {
   opacity: 1; /* Show tooltip on hover or focus */
 }
+
 /* Hide "Confess" on Mobile */
 @media (max-width: 768px) {
   nav ul li a[href="/confess"] {
-    display: none;  /* Hide Confess link on mobile */
+    display: none; /* Hide Confess link on mobile */
   }
 }
