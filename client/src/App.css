@@ -148,6 +148,7 @@ nav ul li a:hover {
   padding-top: 90px; /*Adjust the value to match the height or padding of the header*/
   min-height: calc(100vh - 120px); /* Adjust based on the header height */
   overflow-y: auto;
+  max-width:100vw; /*Ensure the container doesn't exceed viewport width*/
 }
 
 /* Home Page Featured Story Box Grid */
@@ -305,4 +306,5 @@ nav ul li a:hover {
 body {
   min-height: 100vh; /* Ensure the body is at least 100% of the viewport height */
   overflow-y: auto;  /* Enable vertical scrolling */
+  overflow-x: hidden; /*prevent horizontal overflow */
 }
