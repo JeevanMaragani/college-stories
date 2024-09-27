@@ -10,6 +10,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function App() {
   const [posts, setPosts] = useState([]);
+  const [isOpen, setIsOpen] = useState(false); // Correct initialization
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen); // Toggle the menu on click
+  };
 
   // Add new posts with metadata (likes, date)
   const addPost = (newPost) => {
@@ -29,15 +34,33 @@ function App() {
           <div className="logo">
             <Link to="/">College Stories</Link>
           </div>
-          <nav>
+
+          {/* Navigation links for desktop */}
+          <nav className="desktop-nav">
             <ul>
-              {/* Reordered Links: Home first */}
-              <li><Link to="/"><FontAwesomeIcon icon={faHome}/> Home</Link></li>
-              <li><Link to="/explore"><FontAwesomeIcon icon={faSearch}/> Explore</Link></li>
-              <li><Link to="/communities"><FontAwesomeIcon icon={faUsers}/> Communities</Link></li>
-              <li className="confess-link"><Link to="/confess"><FontAwesomeIcon icon={faComment}/> Confess</Link></li> {/* Hidden on mobile but visible on web */}
+              <li><Link to="/"><FontAwesomeIcon icon={faHome} /> Home</Link></li>
+              <li><Link to="/explore"><FontAwesomeIcon icon={faSearch} /> Explore</Link></li>
+              <li><Link to="/communities"><FontAwesomeIcon icon={faUsers} /> Communities</Link></li>
+              <li className="confess-link"><Link to="/confess"><FontAwesomeIcon icon={faComment} /> Confess</Link></li> 
             </ul>
           </nav>
+
+          {/* Hamburger icon for mobile */}
+          <div className="hamburger-icon" onClick={toggleMenu}>
+            &#9776; {/* Hamburger Icon */}
+          </div>
+
+          {/* Sidebar for Mobile Navigation */}
+          <div className={`sidebar ${isOpen ? 'open' : ''}`}>
+            <nav>
+              <ul>
+                <li><Link to="/"><FontAwesomeIcon icon={faHome} /> Home</Link></li>
+                <li><Link to="/explore"><FontAwesomeIcon icon={faSearch} /> Explore</Link></li>
+                <li><Link to="/communities"><FontAwesomeIcon icon={faUsers} /> Communities</Link></li>
+                <li className="confess-link"><Link to="/confess"><FontAwesomeIcon icon={faComment} /> Confess</Link></li> 
+              </ul>
+            </nav>
+          </div>
         </header>
 
         {/* Page Routes */}

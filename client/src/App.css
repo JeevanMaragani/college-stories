@@ -17,6 +17,49 @@ header {
   border-bottom: 2px solid #2980b9; /* Slight border at the bottom for a clean separation */
   
   }
+  /*Hamburger icon for mobile navigation*/
+  .hamburger-icon {
+    font-size: 2rem;
+    cursor: pointer;
+    display: none; /*Hidden on desktop,visible on mobile*/
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    z-index: 10;
+  }
+   /* Sidebar Styles */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Hidden by default */
+    width: 250px;
+    height: 100%;
+    background-color: #3498db;
+    transition: right 0.3s ease-in-out; /* Smooth sliding effect */
+    z-index: 9;
+   padding-top: 60px;
+  }
+
+  .sidebar.open {
+   right: 0; /* When menu is open, slide in from the right */
+  }
+
+  .sidebar nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .sidebar nav ul li {
+    margin: 20px 0;
+  }
+
+  .sidebar nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+  }
+
+
   .logo {
     font-size: 2rem;
     text-align: center;
@@ -34,6 +77,13 @@ header h1 {
   font-size: 3rem;
   font-weight: bold;
   margin: 0;
+}
+.welcome-title {
+  position: relative;
+  left: 100px; /* Moves the title to the right by 50px */
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-top: 20px;
 }
 
 /* Navigation Links */
@@ -54,8 +104,28 @@ nav ul {
 
 nav ul li {
   margin: 0 25px; /* Adds spacing between navigation links */
-}
 
+}
+/* Mobile-specific changes for hamburger menu */
+@media (max-width: 768px) {
+  .hamburger-icon {
+    display: block; /* Only show hamburger icon on mobile screens */
+    /*Hide the navigation links for mobile view*/
+    nav ul {
+      display: none;
+    }
+    .hamburger-menu.active + nav ul {
+      display: flex; /* Show the menu when hamburger is clicked */
+      flex-direction: column; /* Stack links vertically for mobile */
+      position: absolute;
+      top: 80px; /* Adjust the position below the header */
+      right: 0;
+      background-color: #3498db; /* Background color for the mobile menu */
+      width: 200px; /* Set a fixed width for the mobile menu */
+      border-radius: 8px; /* Rounded corners for the mobile menu */
+    }
+  }
+  }
 nav ul li a {
   color: white;
   text-decoration: none;
@@ -159,6 +229,15 @@ nav ul li a:hover {
   footer {
     padding: 10px;
     font-size: 0.8rem;
+  }
+}
+@media (max-width: 768px) {
+  .hamburger-icon {
+    display: block; /* Show hamburger icon on mobile screens */
+  }
+
+  nav ul {
+    display: none; /* Hide the default navigation links on mobile */
   }
 }
 

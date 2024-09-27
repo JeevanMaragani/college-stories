@@ -1,6 +1,15 @@
 /* Home.css */
 
 /* Global Styles */
+.welcome-title {
+  position: relative;
+  left: 50px; /* Moves the title to the right by 50px */
+  right:50px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background-color: #f9f9f9;

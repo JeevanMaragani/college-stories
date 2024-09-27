@@ -3,7 +3,7 @@ import React from 'react';
 function Home() {
   return (
     <div>
-      <h1>Welcome to College Stories</h1>
+      <h1 className="welcome-title">Welcome to College Stories</h1>
       <div className="home-featured-stories">
         <div className="featured-story">
           <h3>Featured Story 1</h3>
